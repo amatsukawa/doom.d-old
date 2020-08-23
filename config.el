@@ -83,6 +83,10 @@
 (setq org-log-done 'time
       org-log-into-drawer t)
 
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")))
+
 (setq org-refile-use-outline-path 'file
       org-refile-allow-creating-parent-nodes 'confirm
       org-outline-path-complete-in-steps nil)
@@ -144,9 +148,8 @@
 
 
 ;; == org-journal ==
-(setq org-journal-file-type 'weekly	
-      org-journal-start-on-weekday 3
-      org-journal-file-format "%Y-%m-%d.org"
-      org-journal-date-format "%A, %d %B %Y")
-
+(after! org-journal
+  (setq org-journal-file-type 'weekly	
+        org-journal-file-format "%Y-%m-%d.org"
+        org-journal-date-format "%A, %d %B %Y"))
 
