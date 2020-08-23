@@ -149,7 +149,10 @@
 
 ;; == org-journal ==
 (after! org-journal
-  (setq org-journal-file-type 'weekly	
+  (setq org-journal-file-type 'weekly
         org-journal-file-format "%Y-%m-%d.org"
         org-journal-date-format "%A, %d %B %Y"))
 
+
+;; == org-roam ==
+;; see org-roam branch
