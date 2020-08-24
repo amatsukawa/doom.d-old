@@ -54,3 +54,10 @@
 
 ;; == org-roam ==
 ;; see org-roam branch
+
+(package! org-roam
+  :recipe (:host github :repo "org-roam/org-roam"))
+(package! org-roam-bibtex
+  :recipe (:host github :repo "org-roam/org-roam-bibtex"))
+(package! company-org-roam
+  :recipe (:host github :repo "jethrokuan/company-org-roam"))

@@ -155,4 +155,44 @@
 
 
 ;; == org-roam ==
-;; see org-roam branch
+
+(use-package! org-roam
+  :hook (org-load . org-roam-mode)
+  :hook (org-roam-backlinks-mode . turn-on-visual-line-mode)
+  :commands (org-roam-buffer-toggle-display)
+  :init
+  (map! :after org
+      :map org-mode-map
+      :localleader
+      :prefix ("m" . "org-roam")
+      "b" #'org-roam-switch-to-buffer
+      "f" #'org-roam-find-file
+      "i" #'org-roam-insert
+      "I" #'org-roam-insert-immediate
+      "m" #'org-roam)
+  (setq org-roam-directory
+        (file-truename (expand-file-name "roam" org-directory))
+        org-roam-db-location (file-truename "~/.org-roam.db")
+        org-roam-db-gc-threshold most-positive-fixnum)
+  :config
+  (setq org-roam-capture-templates
+        '(("l" "lit" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "lit/${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t)
+          ("p" "permanent" plain (function org-roam--capture-get-point)
+             "%?"
+             :file-name "permanent/${slug}"
+             :head "#+title: ${title}\n"
+             :unnarrowed t)
+        )))
+
+(after! (org-roam)
+  (winner-mode +1)
+  (map! :map winner-mode-map
+        "<M-right>" #'winner-redo
+        "<M-left>" #'winner-undo))
+
+(use-package! org-roam-protocol
+  :after org-protocol)
