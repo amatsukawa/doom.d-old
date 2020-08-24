@@ -78,6 +78,13 @@
       org-preview-latex-image-directory "/tmp/ltximg/"
       org-export-with-sub-superscripts nil)
 
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :prefix ("z" . "my-org")
+      "t" #'org-show-todo-tree)
+
+
 
 ;; == gdt ==
 (setq org-log-done 'time
